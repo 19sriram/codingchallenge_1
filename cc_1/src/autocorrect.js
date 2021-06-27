@@ -24,16 +24,24 @@ class autoCorrect extends React.Component {
 
         
         this.words = this.state.content.split(' ');
-       
+       console.log(this.words);
     }
      
         // when key down
     keyDown = (e) => {
         
-        if (e.keyCode == 32) {
-            console.log(this.words[this.words.length-1]);
-          console.log(this.correctionObject['realy'])
-        }
+        setTimeout(() => {
+            if (e.keyCode == 32) {
+                console.log(this.words.length);
+                
+                if (this.correctionObject[this.words[this.words.length - 1]] !== undefined) {
+                    this.setState({
+                        content: this.state.content.replace(this.words[this.words.length - 1],this.correctionObject[this.words[this.words.length - 1]]) 
+                    })
+                }
+            }    
+        }, 100);
+        
     }
     render() {
         return (
